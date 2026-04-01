@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harvard: Personal Notice: Action Required</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #A51C30;
+    --crimson-dark: #7a1424;
+    --gold: #C9A84C;
+    --dark: #1a1a1a;
+    --mid: #555;
+    --light: #f5f3ef;
+    --border: #d4c9b8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--light); font-family: 'EB Garamond', Georgia, serif; color: var(--dark); font-size: 17px; line-height: 1.75; }
+
+  .top-bar {
+    background: var(--crimson);
+    color: white;
+    text-align: center;
+    padding: 9px 20px;
+    font-size: 12px;
+    letter-spacing: 0.13em;
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+  }
+
+  header {
+    background: white;
+    border-bottom: 3px solid var(--crimson);
+    padding: 24px 0 18px;
+  }
+  .header-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 36px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .shield { font-size: 48px; }
+  .header-text h1 { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--crimson); font-family: 'DM Mono', monospace; }
+  .header-text h2 { font-size: 19px; font-weight: 600; }
+
+  /* TOP CLAIM BUTTON */
+  .cta-top {
+    max-width: 700px;
+    margin: 32px auto 0;
+    padding: 0 36px;
+  }
+  .cta-banner {
+    background: var(--crimson);
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .cta-banner p { color: white; font-size: 16px; line-height: 1.4; }
+  .cta-banner p strong { font-size: 18px; display: block; }
+  .cta-btn {
+    background: white;
+    color: var(--crimson);
+    border: none;
+    padding: 13px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 500;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .cta-btn:hover { background: #f0e8e8; transform: scale(1.03); }
+
+  .doc-wrap {
+    max-width: 700px;
+    margin: 36px auto 80px;
+    padding: 0 36px;
+  }
+
+  .notice-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-top: 5px solid var(--crimson);
+    padding: 36px 40px;
+  }
+
+  .notice-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 6px;
+  }
+  .notice-title {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .notice-sub {
+    font-style: italic;
+    color: var(--mid);
+    font-size: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+  }
+
+  p { margin-bottom: 16px; }
+
+  .callout {
+    background: #fdf9f0;
+    border-left: 4px solid var(--gold);
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-style: italic;
+    font-size: 16px;
+    color: #444;
+  }
+
+  .steps {
+    counter-reset: steps;
+    margin: 20px 0 24px;
+    padding: 0;
+    list-style: none;
+  }
+  .steps li {
+    counter-increment: steps;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    font-size: 16px;
+    align-items: flex-start;
+  }
+  .steps li::before {
+    content: counter(steps);
+    background: var(--crimson);
+    color: white;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    min-width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .deadline-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff8f8;
+    border: 1px solid #f0c0c0;
+    padding: 14px 20px;
+    margin: 24px 0;
+  }
+  .deadline-icon { font-size: 28px; }
+  .deadline-text { font-size: 15px; color: var(--crimson-dark); }
+  .deadline-text strong { font-size: 16px; display: block; }
+
+  .sig {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .sig-name { font-style: italic; font-size: 19px; }
+  .sig-role { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); letter-spacing: 0.07em; }
+
+  .bottom-cta {
+    text-align: center;
+    margin-top: 32px;
+    padding: 32px;
+    background: white;
+    border: 1px solid var(--border);
+  }
+  .bottom-cta p { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--mid); margin-bottom: 18px; letter-spacing: 0.04em; }
+  .bottom-btn {
+    background: var(--crimson);
+    color: white;
+    border: none;
+    padding: 16px 44px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .bottom-btn:hover { background: var(--crimson-dark); transform: scale(1.03); }
+
+  /* FLOATING ROBOTS */
+  .floating-robots { position: fixed; inset: 0; pointer-events: none; z-index: 999; display: none; }
+  .floating-robots.show { display: block; }
+  .fr { position: absolute; animation: floatUp 3s ease-in forwards; opacity: 0; }
+  @keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(-100vh) rotate(360deg); }
+  }
+
+  /* REVEAL */
+  .reveal { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.88); align-items: center; justify-content: center; }
+  .reveal.show { display: flex; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .reveal-box {
+    background: white;
+    padding: 52px 56px;
+    max-width: 520px;
+    width: 92%;
+    text-align: center;
+    border-top: 8px solid var(--crimson);
+    animation: pop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes pop { from { transform: scale(0.7) translateY(30px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+
+  .reveal-emoji { font-size: 76px; display: block; margin-bottom: 16px; animation: wobble 0.6s ease 0.3s both; }
+  @keyframes wobble { 0%,100%{transform:rotate(0)} 25%{transform:rotate(-15deg)} 75%{transform:rotate(15deg)} }
+
+  .reveal-box h2 { font-size: 44px; color: var(--crimson); font-weight: 600; margin-bottom: 12px; }
+  .reveal-box .msg { font-size: 18px; color: var(--mid); margin-bottom: 8px; }
+  .reveal-box .sub { font-family: 'DM Mono', monospace; font-size: 12.5px; color: #aaa; margin-top: 18px; line-height: 1.6; }
+  .close-btn {
+    display: inline-block;
+    margin-top: 28px;
+    background: var(--crimson);
+    color: white;
+    padding: 12px 32px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+  }
+  .close-btn:hover { background: var(--crimson-dark); }
+
+  @media (max-width: 560px) {
+    .doc-wrap, .cta-top { padding: 0 18px; }
+    .notice-card { padding: 24px 22px; }
+    .reveal-box { padding: 36px 24px; }
+    .reveal-box h2 { font-size: 34px; }
+    .cta-banner { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">Harvard University · Office of Research Compliance · Confidential, Addressee Only</div>
+
+<header>
+  <div class="header-inner">
+    <div class="shield">🏛️</div>
+    <div class="header-text">
+      <h1>Harvard University · Office of the Provost</h1>
+      <h2>Personal Action Notice: Directive 2026-HR-001</h2>
+    </div>
+  </div>
+</header>
+
+<!-- TOP CLAIM LINK -->
+<div class="cta-top">
+  <div class="cta-banner">
+    <p><strong>Your robot is ready to be claimed.</strong> Complete registration before the deadline to secure your unit.</p>
+    <button class="cta-btn" onclick="triggerReveal()">→ &nbsp; Claim My Robot</button>
+  </div>
+</div>
+
+<div class="doc-wrap">
+  <div class="notice-card">
+    <p class="notice-label">Personal Compliance Notice · Directive 2026-HR-001</p>
+    <h1 class="notice-title">You Are Required to Acquire One (1) Humanoid Robotic Assistant</h1>
+    <p class="notice-sub">Effective January 1, 2027 · Harvard University Policy on Research Modernization</p>
+
+    <p>Dear Harvard Researcher,</p>
+
+    <p>Following the success of humanoid robots in surgical suites and at peer institutions, Harvard's Provost Office has determined that <strong>every active researcher must be personally assigned one (1) certified Humanoid Robotic Research Assistant</strong> 🤖, hereinafter "your robot."</p>
+
+    <p>An internal audit found that the average Harvard researcher wastes <strong>14 hours per week</strong> on tasks beneath their intellectual capacity, including fetching papers, refilling coffee, and pretending to laugh at their PI's jokes during lab meetings. Your robot will handle all of this. It will not laugh at the jokes either, but it will nod at statistically appropriate intervals.</p>
+
+    <div class="callout">
+      "The modern Harvard researcher should not be fetching their own oat milk. A robot can do this better, while simultaneously reviewing your literature and maintaining an appropriately enthusiastic expression during Zoom calls."
+      <br><br><em>Harvard 2025 Research Efficiency Task Force, Final Report, p. 47</em>
+    </div>
+
+    <p><strong>Your robot will personally:</strong></p>
+    <ul class="steps">
+      <li>Attend meetings on your behalf when you are "feeling unwell" (i.e., a deadline exists)</li>
+      <li>Write your Specific Aims. It will do this better than you. Please sit with that.</li>
+      <li>Manage your Slack, reply to "quick question" emails, and discourage reviewers from requesting more experiments</li>
+      <li>Receive a window desk. It doesn't need sunlight. It simply <em>deserves</em> it.</li>
+    </ul>
+
+    <div class="deadline-row">
+      <span class="deadline-icon">⏳</span>
+      <div class="deadline-text">
+        <strong>Claim Deadline: April 15, 2026</strong>
+        Unclaimed robots will be allocated to MIT. We don't want that.
+      </div>
+    </div>
+
+    <p>Your robot has already been named. Its name is <strong>BRAD</strong>. BRAD is excited to meet you. BRAD has read all of your papers. BRAD has <em>opinions</em> about your methods section.</p>
+
+    <div class="sig">
+      <div>
+        <p class="sig-name">Alan M. Garber</p>
+        <p class="sig-role">Provost, Harvard University</p>
+      </div>
+      <div>
+        <p class="sig-name">BRAD-Δ9</p>
+        <p class="sig-role">Chief Robotic Compliance Officer<br>Appointed Jan 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-cta">
+    <p>Confirm receipt and claim your assigned unit before the deadline.</p>
+    <button class="bottom-btn" onclick="triggerReveal()">✓ &nbsp; I Accept: Assign Me BRAD</button>
+  </div>
+</div>
+
+<!-- FLOATING ROBOTS -->
+<div class="floating-robots" id="floatingRobots"></div>
+
+<!-- REVEAL -->
+<div class="reveal" id="reveal">
+  <div class="reveal-box">
+    <span class="reveal-emoji">🤖</span>
+    <h2>APRIL FOOLS!</h2>
+    <p class="msg">BRAD is not real.<br><em>(We're so sorry. BRAD would have been great.)</em></p>
+    <p class="msg" style="font-size:16px; margin-top:6px;">No robots are coming. Your coffee is your own. Your methods section remains between you and your reviewers.</p>
+    <p class="sub">Happy April 1st from your labmates 🎉<br>Now go do some real science.<br>BRAD would have wanted that.</p>
+    <button class="close-btn" onclick="document.getElementById('reveal').classList.remove('show'); document.getElementById('floatingRobots').classList.remove('show')">
+      Farewell, BRAD
+    </button>
+  </div>
+</div>
+
+<script>
+  function triggerReveal() {
+    const container = document.getElementById('floatingRobots');
+    container.classList.add('show');
+    const emojis = ['🤖','🦾','⚙️','🔩','💡','🤣','👾'];
+    for (let i = 0; i < 30; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'fr';
+        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.bottom = '0';
+        el.style.animationDuration = (2 + Math.random() * 2) + 's';
+        el.style.fontSize = (22 + Math.random() * 30) + 'px';
+        container.appendChild(el);
+        setTimeout(() => el.remove(), 4000);
+      }, i * 70);
+    }
+    setTimeout(() => document.getElementById('reveal').classList.add('show'), 500);
+  }
+</script>
+</body>
+</html>
